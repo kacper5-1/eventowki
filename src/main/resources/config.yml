@@ -1,0 +1,48 @@
+# Eventowki - konfiguracja
+# Kolory/formatowanie: MiniMessage, np. <red>, <bold>, <gradient:red:dark_red>tekst</gradient>
+
+messages:
+  cooldown: "<red>Poczekaj jeszcze <white>{time}s</white> przed ponownym uzyciem!"
+  elytra-blocked: "<dark_red>Elytra zablokowana przez Pole Smierci!"
+  no-permission: "<red>Brak uprawnien."
+  reloaded: "<green>Przeladowano konfiguracje."
+  no-space: "<red>Brak miejsca na zamek!"
+  castle-protected: "<red>Zamek z piasku jest chroniony!"
+
+items:
+  pole_smierci:
+    type: DEATH_FIELD          # na razie dostepny typ: DEATH_FIELD (blokada elytry w strefie)
+    material: RED_DYE          # zmien na dowolny Material
+    custom-model-data: 0       # >0 jesli masz resource pack z wlasna tekstura
+    name: "<dark_red><bold>Pole Smierci"
+    lore:
+      - "<gray>Kliknij PPM, aby postawic pole."
+      - "<red>Blokuje elytre graczom w srodku."
+    cooldown-seconds: 30
+    radius: 5.0                # promien strefy w blokach
+    duration-seconds: 5        # jak dlugo stoi samo pole
+    block-after-leave-seconds: 5  # ile s elytra jest zablokowana PO wyjsciu z pola
+    affect-owner: false        # czy blokuje tez elytre temu, kto postawil
+    consume: true              # czy zuzywac przedmiot po uzyciu
+
+  zamek_z_piasku:
+    type: SAND_CASTLE
+    material: SAND
+    custom-model-data: 0
+    name: "<gold><bold>Zamek z Piasku"
+    lore:
+      - "<gray>Kliknij PPM, aby zbudowac zamek"
+      - "<gray>z piasku wokol siebie."
+    cooldown-seconds: 45
+    duration-seconds: 15       # po tylu sekundach zamek znika
+    castle-radius: 2           # polowa boku (2 => zamek 5x5)
+    castle-height: 3           # wysokosc murow
+    castle-material: SAND      # z czego budowac (dowolny blok)
+    castle-battlements: true   # krenelaz na szczycie murow
+    castle-roof: true          # dach
+    castle-floor: true         # podloga (zamek to zamknieta bryla: podloga + sciany + dach)
+    castle-unbreakable: true   # podloga, sciany i dach niezniszczalne
+    castle-owner-can-break: false # true = wlasciciel moze rozbic wlasny zamek
+    castle-explosion-proof: true  # TNT/creepery/lozka nie niszcza murow
+    castle-block-pearls: true  # nie mozna wejsc do srodka perla/chorusem
+    consume: true

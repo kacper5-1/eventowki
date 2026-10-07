@@ -1,0 +1,14 @@
+name: Eventowki
+version: 1.0.0
+main: pl.eventowki.EventowkiPlugin
+api-version: '1.21'
+description: Przedmioty eventowe (Pole Śmierci i inne)
+commands:
+  eventowka:
+    description: Zarzadzanie eventowkami
+    usage: /eventowka <give|list|reload>
+    aliases: [ev]
+permissions:
+  eventowki.admin:
+    description: Dostep do komendy /eventowka
+    default: op
