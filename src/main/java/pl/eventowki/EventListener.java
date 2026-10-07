@@ -1,6 +1,6 @@
 package pl.eventowki;
 
-import io.papermc.paper.event.player.PlayerElytraBoostEvent;
+import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.FallingBlock;
 import org.bukkit.entity.Player;
@@ -139,10 +139,16 @@ public final class EventListener implements Listener {
         }
     }
 
-    @EventHandler(ignoreCancelled = true)
-    public void onBoost(PlayerElytraBoostEvent e) {
-        if (fields.isBlocked(e.getPlayer())) {
+    /** Blokada fajerwerka na elytrze (boost) w polu / po wyjsciu z pola. */
+    @EventHandler
+    public void onFirework(PlayerInteractEvent e) {
+        if (e.getAction() != Action.RIGHT_CLICK_AIR && e.getAction() != Action.RIGHT_CLICK_BLOCK) return;
+        ItemStack it = e.getItem();
+        if (it == null || it.getType() != Material.FIREWORK_ROCKET) return;
+        Player p = e.getPlayer();
+        if (p.isGliding() && fields.isBlocked(p)) {
             e.setCancelled(true);
+            p.sendActionBar(plugin.msg("elytra-blocked"));
         }
     }
 }
